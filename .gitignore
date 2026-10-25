@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+
+# Секреты
+.env
+*.env
+!.env.example
+
+# Данные и модели — не коммитим (оставляем только .gitkeep)
+ml/data/*
+!ml/data/.gitkeep
+ml/models/*
+!ml/models/.gitkeep
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.onnx
+*.ckpt
+
+# Аудио
+*.ogg
+*.wav
+*.mp3
+*.m4a
+*.flac
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE / ОС
+.idea/
+.vscode/
+.DS_Store
