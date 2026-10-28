@@ -23,6 +23,8 @@ ml = [
     "nbstripout>=0.7",
     "pandas>=2",
     "matplotlib>=3.8",
+    "dvc>=3.67.1",
+    "dvc-gdrive>=3.0.1",
     "scikit-learn>=1.5,<2",
     "joblib>=1.4,<2",
 ]
