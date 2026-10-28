@@ -25,6 +25,8 @@ ml = [
     "matplotlib>=3.8",
     "dvc>=3.67.1",
     "dvc-gdrive>=3.0.1",
+    "scikit-learn>=1.5,<2",
+    "joblib>=1.4,<2",
 ]
 # Сюда на шаге 2 добавится группа bot = ["aiogram>=3", ...]
 
@@ -55,3 +57,4 @@ ignore = ["RUF001", "RUF002", "RUF003"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["."]

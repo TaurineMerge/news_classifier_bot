@@ -31,7 +31,7 @@ newsbot/
 ├─ src/newsbot/       общий пакет: контракт и модели (рабочий код)
 │  ├─ schemas.py      контракт: Transcription, TopicPrediction
 │  ├─ asr.py          распознавание речи (faster-whisper)
-│  └─ classifier.py   классификатор тем (пока заглушка)
+│  └─ classifier.py   заглушка и опциональный TF-IDF backend
 ├─ ml/                эксперименты ML-команды → см. ml/README.md
 ├─ services/          запускаемые сервисы (бот появится здесь)
 └─ tests/             тесты
@@ -39,6 +39,21 @@ newsbot/
 
 Эксперименты находятся в `ml/notebooks/`, рабочий код — в `src/newsbot/`.
 Всё, что использует бот, должно лежать в `src/newsbot/` и соответствовать контракту из `schemas.py`.
+
+Baseline трёх тем и передача данных описаны в [ml/reports/DATA_HANDOFF.md](ml/reports/DATA_HANDOFF.md).
+После `uv sync --locked --group ml` и получения файла модели:
+
+```python
+from newsbot.classifier import build_classifier
+
+classifier = build_classifier("tfidf", model_path="ml/models/text_baseline.joblib")
+prediction = classifier.predict("В университете начался прием абитуриентов")
+print(prediction.topic, prediction.confidence)
+```
+
+Backend возвращает `TopicPrediction` с темами «образование», «развлечения», «технологии».
+Пустой ввод и неизвестный словарь дают «другое». Оценки модели получены на предварительной
+разметке; готовность к реальным голосовым сообщениям ими не подтверждена.
 
 ## Частые команды
 

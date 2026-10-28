@@ -22,7 +22,7 @@ jobs:
 
       - name: Install dependencies
         # --locked: uv.lock не совпадает с pyproject.toml
-        run: uv sync --locked
+        run: uv sync --locked --group ml
 
       - name: Ruff (lint)
         run: uv run ruff check .
