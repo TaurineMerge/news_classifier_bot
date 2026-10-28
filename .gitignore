@@ -13,11 +13,6 @@ dist/
 *.env
 !.env.example
 
-# Данные и модели — не коммитим (оставляем только .gitkeep)
-ml/data/*
-!ml/data/.gitkeep
-ml/models/*
-!ml/models/.gitkeep
 *.pt
 *.pth
 *.bin
