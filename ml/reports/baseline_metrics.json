@@ -1,0 +1,349 @@
+{
+  "dataset": {
+    "rule_version": "lenta-three-topics-v3",
+    "source": "https://github.com/yutkin/Lenta.Ru-News-Dataset/releases/download/v1.1/lenta-ru-news.csv.bz2",
+    "source_sha256": "c4f7f771c7c78221978943a65dfabc9cc129a72a5d477635acc16a771d1fda47",
+    "source_rows": 800975,
+    "seed": 20261028,
+    "max_words": 140,
+    "previous_review_exclusion_sha256": "7c9c258d36913534e56d2a97c443cd15c5fc667b7999554212998d052d46736a",
+    "label_status": "rule-based weak supervision; not human gold",
+    "eligible": {
+      "test/education": 138,
+      "test/entertainment": 837,
+      "test/technology": 122,
+      "train/education": 1022,
+      "train/entertainment": 5277,
+      "train/technology": 1601,
+      "validation/education": 61,
+      "validation/entertainment": 517,
+      "validation/technology": 107
+    },
+    "rejected": {
+      "invalid_date": 5,
+      "out_of_scope": 791216,
+      "short_body": 5,
+      "duplicate": 36,
+      "conflict": 1,
+      "previously_reviewed_holdout": 30
+    },
+    "splits": {
+      "train": {
+        "rows": 3066,
+        "per_class": 1022,
+        "sha256": "a51e81f226df11140f0016ec839e160c97fac31467fbbcde16d5ddc5063f354c"
+      },
+      "validation": {
+        "rows": 183,
+        "per_class": 61,
+        "sha256": "337936056a2b45a270eba4c8dd06960d0f44c6897df1a4a4f4fa37f847246f32"
+      },
+      "test": {
+        "rows": 366,
+        "per_class": 122,
+        "sha256": "20b586c4b70f62b9eb59b46e317c48a84c6cde4871b9cf7a92806c8447b8ed92"
+      }
+    },
+    "split_policy": "train 1999-2017; validation 2018; test 2019; exact deduplication before split",
+    "limitations": [
+      "near-duplicate events not grouped",
+      "filtered editorial domain",
+      "old news",
+      "no human gold labels"
+    ]
+  },
+  "training_class_counts": {
+    "entertainment": 1022,
+    "technology": 1022,
+    "education": 1022
+  },
+  "selection_policy": "best macro-F1 on validation 2018; test never used to fit or select parameters",
+  "selected_model": "multinomial_nb",
+  "validation": {
+    "logistic_regression": {
+      "rows": 183,
+      "accuracy": 0.9617486338797814,
+      "macro_f1": 0.9619047619047619,
+      "report": {
+        "education": {
+          "precision": 0.9661016949152542,
+          "recall": 0.9344262295081968,
+          "f1-score": 0.95,
+          "support": 61.0
+        },
+        "entertainment": {
+          "precision": 0.9230769230769231,
+          "recall": 0.9836065573770492,
+          "f1-score": 0.9523809523809523,
+          "support": 61.0
+        },
+        "technology": {
+          "precision": 1.0,
+          "recall": 0.9672131147540983,
+          "f1-score": 0.9833333333333333,
+          "support": 61.0
+        },
+        "accuracy": 0.9617486338797814,
+        "macro avg": {
+          "precision": 0.9630595393307257,
+          "recall": 0.9617486338797815,
+          "f1-score": 0.9619047619047619,
+          "support": 183.0
+        },
+        "weighted avg": {
+          "precision": 0.9630595393307259,
+          "recall": 0.9617486338797814,
+          "f1-score": 0.9619047619047618,
+          "support": 183.0
+        }
+      },
+      "labels": [
+        "education",
+        "entertainment",
+        "technology"
+      ],
+      "confusion_matrix": [
+        [
+          57,
+          4,
+          0
+        ],
+        [
+          1,
+          60,
+          0
+        ],
+        [
+          1,
+          1,
+          59
+        ]
+      ]
+    },
+    "multinomial_nb": {
+      "rows": 183,
+      "accuracy": 0.9672131147540983,
+      "macro_f1": 0.9673016009390549,
+      "report": {
+        "education": {
+          "precision": 0.9508196721311475,
+          "recall": 0.9508196721311475,
+          "f1-score": 0.9508196721311475,
+          "support": 61.0
+        },
+        "entertainment": {
+          "precision": 0.9516129032258065,
+          "recall": 0.9672131147540983,
+          "f1-score": 0.959349593495935,
+          "support": 61.0
+        },
+        "technology": {
+          "precision": 1.0,
+          "recall": 0.9836065573770492,
+          "f1-score": 0.9917355371900827,
+          "support": 61.0
+        },
+        "accuracy": 0.9672131147540983,
+        "macro avg": {
+          "precision": 0.9674775251189848,
+          "recall": 0.9672131147540983,
+          "f1-score": 0.9673016009390549,
+          "support": 183.0
+        },
+        "weighted avg": {
+          "precision": 0.9674775251189848,
+          "recall": 0.9672131147540983,
+          "f1-score": 0.9673016009390552,
+          "support": 183.0
+        }
+      },
+      "labels": [
+        "education",
+        "entertainment",
+        "technology"
+      ],
+      "confusion_matrix": [
+        [
+          58,
+          3,
+          0
+        ],
+        [
+          2,
+          59,
+          0
+        ],
+        [
+          1,
+          0,
+          60
+        ]
+      ]
+    }
+  },
+  "test": {
+    "rows": 366,
+    "accuracy": 0.9754098360655737,
+    "macro_f1": 0.9755766238871164,
+    "report": {
+      "education": {
+        "precision": 0.937984496124031,
+        "recall": 0.9918032786885246,
+        "f1-score": 0.9641434262948207,
+        "support": 122.0
+      },
+      "entertainment": {
+        "precision": 1.0,
+        "recall": 0.9672131147540983,
+        "f1-score": 0.9833333333333333,
+        "support": 122.0
+      },
+      "technology": {
+        "precision": 0.9915966386554622,
+        "recall": 0.9672131147540983,
+        "f1-score": 0.979253112033195,
+        "support": 122.0
+      },
+      "accuracy": 0.9754098360655737,
+      "macro avg": {
+        "precision": 0.9765270449264977,
+        "recall": 0.9754098360655737,
+        "f1-score": 0.9755766238871164,
+        "support": 366.0
+      },
+      "weighted avg": {
+        "precision": 0.9765270449264979,
+        "recall": 0.9754098360655737,
+        "f1-score": 0.9755766238871163,
+        "support": 366.0
+      }
+    },
+    "labels": [
+      "education",
+      "entertainment",
+      "technology"
+    ],
+    "confusion_matrix": [
+      [
+        121,
+        0,
+        1
+      ],
+      [
+        4,
+        118,
+        0
+      ],
+      [
+        4,
+        0,
+        118
+      ]
+    ]
+  },
+  "dummy_test": {
+    "rows": 366,
+    "accuracy": 0.3333333333333333,
+    "macro_f1": 0.16666666666666666,
+    "report": {
+      "education": {
+        "precision": 0.3333333333333333,
+        "recall": 1.0,
+        "f1-score": 0.5,
+        "support": 122.0
+      },
+      "entertainment": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 122.0
+      },
+      "technology": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 122.0
+      },
+      "accuracy": 0.3333333333333333,
+      "macro avg": {
+        "precision": 0.1111111111111111,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.16666666666666666,
+        "support": 366.0
+      },
+      "weighted avg": {
+        "precision": 0.1111111111111111,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.16666666666666666,
+        "support": 366.0
+      }
+    },
+    "labels": [
+      "education",
+      "entertainment",
+      "technology"
+    ],
+    "confusion_matrix": [
+      [
+        122,
+        0,
+        0
+      ],
+      [
+        122,
+        0,
+        0
+      ],
+      [
+        122,
+        0,
+        0
+      ]
+    ]
+  },
+  "tokenization": {
+    "method": "sklearn word tokenizer, lowercase, unigrams and bigrams, no lemmatization",
+    "vocabulary_features": 40000,
+    "splits": {
+      "train": {
+        "documents": 3066,
+        "tokens": 371056,
+        "median_tokens": 125.0
+      },
+      "validation": {
+        "documents": 183,
+        "tokens": 21475,
+        "median_tokens": 124.0
+      },
+      "test": {
+        "documents": 366,
+        "tokens": 44122,
+        "median_tokens": 125.0
+      }
+    }
+  },
+  "artifact": {
+    "file": "ml/models/text_baseline.joblib",
+    "sha256": "eefa7f283578a6e07cc7d301ea8e8d74c3506c72d385c3a4ed3a11840d1e2922",
+    "bytes": 1420650
+  },
+  "versions": {
+    "python": "3.11.15",
+    "sklearn": "1.9.1",
+    "numpy": "2.4.6",
+    "joblib": "1.6.0"
+  },
+  "limitations": [
+    "weak labels, not human gold",
+    "not a voice/ASR evaluation",
+    "no near-duplicate event grouping",
+    "confidence not calibrated on human labels"
+  ],
+  "checks": [
+    "verified input file hashes",
+    "no exact body/title/url/input split overlap",
+    "verified chronological split",
+    "saved-model parity on full test",
+    "finite normalized probabilities"
+  ]
+}

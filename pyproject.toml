@@ -23,6 +23,8 @@ ml = [
     "nbstripout>=0.7",
     "pandas>=2",
     "matplotlib>=3.8",
+    "scikit-learn>=1.5,<2",
+    "joblib>=1.4,<2",
 ]
 # Сюда на шаге 2 добавится группа bot = ["aiogram>=3", ...]
 
@@ -53,3 +55,4 @@ ignore = ["RUF001", "RUF002", "RUF003"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["."]
