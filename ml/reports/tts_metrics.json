@@ -1,0 +1,19 @@
+{
+  "rows": 9,
+  "split": "test",
+  "whisper_model": "ml/models/whisper-tiny",
+  "device": "cpu/int8",
+  "clean_accuracy": 0.8888888888888888,
+  "asr_accuracy": 0.8888888888888888,
+  "clean_macro_f1": 0.8857142857142857,
+  "asr_macro_f1": 0.8857142857142857,
+  "micro_wer": 0.38609112709832133,
+  "reference_words": 417,
+  "normalization": "lowercase, ё->е, word tokens; numbers and abbreviations not expanded",
+  "limitations": [
+    "small synthetic single-voice diagnostic",
+    "weak topic labels",
+    "not real Telegram speech"
+  ],
+  "source_manifest_sha256": "812ffca6858745c24d4a722a13444fef47214ce8a145d3ea3590f99613aeec49"
+}
