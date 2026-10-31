@@ -4,12 +4,19 @@ version = "0.1.0"
 description = "Транскрибация голосовых новостей и определение их тематики"
 readme = "README.md"
 requires-python = ">=3.11"
-# Зависимости общего пакета src/newsbot — их получают и ML, и сервисы
+# Зависимости общего пакета src/newsbot (ASR + классификатор) — их получают и ML, и сервисы
 dependencies = [
     "faster-whisper>=1.1",
+    "joblib>=1.4,<2",
+    "scikit-learn>=1.5,<2",
 ]
 
 [dependency-groups]
+# Telegram-бот (services/bot): `uv sync --group bot`
+bot = [
+    "aiogram>=3.13,<4",
+    "pydantic-settings>=2.4,<3",
+]
 # Инструменты разработки — нужны всем
 dev = [
     "pytest>=8",
@@ -25,10 +32,7 @@ ml = [
     "matplotlib>=3.8",
     "dvc>=3.67.1",
     "dvc-gdrive>=3.0.1",
-    "scikit-learn>=1.5,<2",
-    "joblib>=1.4,<2",
 ]
-# Сюда на шаге 2 добавится группа bot = ["aiogram>=3", ...]
 
 [tool.uv]
 # `uv sync` по умолчанию ставит dev; ml — по запросу: `uv sync --group ml`
