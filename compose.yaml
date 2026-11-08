@@ -1,7 +1,10 @@
-# Запуск бота: docker compose up -d --build
+# Локально:  docker compose up -d --build        (собрать образ из кода)
+# На сервере: deploy/deploy.sh <tag>              (скачать готовый образ из GHCR)
 # Перед первым запуском: заполнить .env (см. .env.example) и положить модель в ml/models/
 services:
   bot:
+    # Готовый образ из GitHub Container Registry; тег задаёт deploy.sh (по коммиту)
+    image: ${BOT_IMAGE:-ghcr.io/taurinemerge/news_classifier_bot}:${BOT_TAG:-latest}
     build:
       context: .
       dockerfile: services/bot/Dockerfile

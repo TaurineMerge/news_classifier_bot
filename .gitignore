@@ -37,3 +37,6 @@ dist/
 
 # Результаты прогонов ASR (ml/scripts/batch_transcribe.py)
 results/
+
+# Состояние деплоя на сервере (deploy/deploy.sh)
+.deploy/

@@ -36,9 +36,11 @@ uv run python -m services.bot
 ## Docker
 
 ```bash
-docker compose up -d --build      # из корня репозитория
+docker compose up -d --build      # из корня репозитория: собрать образ из кода
 docker compose logs -f bot
 ```
+
+На сервере образ не собирается, а скачивается готовым из GHCR — см. [docs/deploy.md](../../docs/deploy.md).
 
 - `ml/models/` монтируется в контейнер только для чтения, в образ модель не попадает.
 - Веса whisper скачиваются при первом старте в volume `whisper-cache` и переживают пересборку.

@@ -1,0 +1,124 @@
+name: Deploy
+
+# Автодеплой: каждый push в main (то есть мерж PR) → образ в GHCR → обновление на сервере.
+# Ручной запуск (Actions → Deploy → Run workflow):
+#   без параметров — передеплоить текущий main;
+#   ref = хеш старого коммита — откат на эту версию (образ уже лежит в GHCR, сборки не будет).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Коммит для деплоя (пусто — последний main). Для отката — хеш прошлой версии"
+        required: false
+        default: ""
+
+# Два деплоя одновременно не запускаем; новый ждёт окончания текущего
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  deploy:
+    name: Build & deploy
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Resolve version
+        id: version
+        env:
+          INPUT_REF: ${{ inputs.ref }}
+          REPO: ${{ github.repository }}
+        run: |
+          sha="${INPUT_REF:-$GITHUB_SHA}"
+          {
+            echo "sha=$sha"
+            echo "tag=sha-${sha:0:7}"
+            echo "image=$REGISTRY/${REPO,,}"   # GHCR требует нижний регистр
+            if [ -n "$INPUT_REF" ]; then echo "rollback=true"; fi
+          } >> "$GITHUB_OUTPUT"
+
+      # Код нужен только для сборки; при откате образ уже есть в GHCR
+      - uses: actions/checkout@v4
+        if: steps.version.outputs.rollback != 'true'
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/setup-buildx-action@v3
+        if: steps.version.outputs.rollback != 'true'
+
+      - name: Build & push image
+        if: steps.version.outputs.rollback != 'true'
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: services/bot/Dockerfile
+          push: true
+          tags: |
+            ${{ steps.version.outputs.image }}:${{ steps.version.outputs.tag }}
+            ${{ steps.version.outputs.image }}:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Configure SSH
+        env:
+          SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          SSH_HOST: ${{ secrets.DEPLOY_HOST }}
+          SSH_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+        run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key && chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "$SSH_PORT" -H "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          cat > ~/.ssh/config <<EOF
+          Host server
+            HostName $SSH_HOST
+            Port $SSH_PORT
+            User ${{ secrets.DEPLOY_USER }}
+            IdentityFile ~/.ssh/deploy_key
+            ServerAliveInterval 30
+          EOF
+
+      - name: Deploy on server
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTOR: ${{ github.actor }}
+          SHA: ${{ steps.version.outputs.sha }}
+          TAG: ${{ steps.version.outputs.tag }}
+          IMAGE: ${{ steps.version.outputs.image }}
+          APP_DIR: ${{ secrets.DEPLOY_PATH || '~/newsbot' }}
+        run: |
+          # Переменные в командах ssh намеренно подставляются на стороне раннера (SC2029)
+          # Токен передаём через stdin, чтобы он не попал в командную строку на сервере;
+          # он живёт только пока идёт этот job
+          # shellcheck disable=SC2029
+          printf '%s' "$TOKEN" | ssh server "docker login $REGISTRY -u $ACTOR --password-stdin" >/dev/null
+          status=0
+          # shellcheck disable=SC2029
+          ssh server "cd $APP_DIR \
+            && git fetch --quiet origin \
+            && git checkout --quiet --detach $SHA \
+            && BOT_IMAGE=$IMAGE deploy/deploy.sh $TAG" || status=$?
+          # shellcheck disable=SC2029
+          ssh server "docker logout $REGISTRY" >/dev/null || true
+          exit "$status"
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "### Деплой ${{ job.status == 'success' && '✅' || '❌' }}"
+            echo "- версия: \`${{ steps.version.outputs.tag }}\` (коммит ${{ steps.version.outputs.sha }})"
+            echo "- режим: ${{ steps.version.outputs.rollback == 'true' && 'откат на готовый образ' || 'сборка и деплой' }}"
+          } >> "$GITHUB_STEP_SUMMARY"

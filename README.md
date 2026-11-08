@@ -68,6 +68,12 @@ uv run python -m services.bot
 
 Или в Docker: `docker compose up -d --build`. Подробности — [services/bot/README.md](services/bot/README.md).
 
+## Деплой
+
+Мерж PR в `main` автоматически собирает образ и обновляет бота на сервере, с автооткатом,
+если новая версия не стартовала. Настройка сервера, откат и обновление модели —
+[docs/deploy.md](docs/deploy.md).
+
 ## Частые команды
 
 | Что                                   | Команда                                             |
