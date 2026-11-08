@@ -194,7 +194,41 @@ def test_settings_require_token(monkeypatch):
 
 
 def test_settings_defaults(settings):
+    assert settings.asr_use_ffmpeg is True
+    assert settings.asr_denoise == "auto"
     assert settings.classifier_backend == "tfidf"
     assert settings.classifier_model_path == Path("ml/models/text_baseline.joblib")
     assert settings.bot_token.get_secret_value() == "123:test"
     assert "123:test" not in repr(settings)  # токен не утекает в логи
+
+
+def test_settings_reject_unknown_denoise_mode(monkeypatch):
+    monkeypatch.setenv("BOT_TOKEN", "123:test")
+    monkeypatch.setenv("ASR_DENOISE", "maybe")
+    with pytest.raises(ValueError):
+        BotSettings(_env_file=None)
+
+
+def test_build_pipeline_preloads_whisper(monkeypatch, settings):
+    import newsbot.asr as asr_module
+    from services.bot import pipeline as pipeline_module
+
+    created = {}
+
+    class FakeWhisperASR:
+        def __init__(self, **kwargs):
+            created.update(kwargs)
+            self.device = kwargs["device"]
+            self.loaded = False
+
+        def load(self):
+            self.loaded = True
+
+    monkeypatch.setattr(asr_module, "WhisperASR", FakeWhisperASR)
+    settings = settings.model_copy(update={"classifier_backend": "stub", "asr_denoise": "off"})
+
+    pipeline = pipeline_module.build_pipeline(settings)
+
+    assert pipeline._asr.loaded  # модель загружена при старте, а не на первом сообщении
+    assert created["use_ffmpeg"] is True
+    assert created["denoise_mode"] == "off"

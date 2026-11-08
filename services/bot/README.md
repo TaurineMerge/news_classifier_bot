@@ -5,7 +5,8 @@
 
 ```
 голосовое → проверка длины/размера → «⏳ Распознаю…» → скачивание
-          → WhisperASR → классификатор → ответ (то же сообщение редактируется)
+          → ffmpeg (16 кГц mono + шумоподавление) → WhisperASR
+          → классификатор → ответ (то же сообщение редактируется)
 ```
 
 ## Устройство
@@ -50,7 +51,9 @@ docker compose logs -f bot
 | Переменная | По умолчанию | |
 |---|---|---|
 | `BOT_TOKEN` | — | обязательна |
-| `WHISPER_MODEL` | `small` | `tiny` быстрее, `medium` точнее |
+| `WHISPER_MODEL` | `small` | `tiny` быстрее, `medium` точнее; можно путь к папке с весами |
+| `ASR_USE_FFMPEG` | `true` | локально нужна установленная ffmpeg |
+| `ASR_DENOISE` | `auto` | `on` / `off` |
 | `CLASSIFIER_BACKEND` | `tfidf` | `stub` — заглушка без модели |
 | `CLASSIFIER_MODEL_PATH` | `ml/models/text_baseline.joblib` | |
 | `MIN_CONFIDENCE` | `0.0` | ниже порога ответ «тему определить не удалось» |

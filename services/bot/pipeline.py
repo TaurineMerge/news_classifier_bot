@@ -70,5 +70,11 @@ def build_pipeline(settings: "BotSettings") -> VoicePipeline:
         compute_type=settings.whisper_compute_type,
         language=settings.whisper_language,
         beam_size=settings.whisper_beam_size,
+        use_ffmpeg=settings.asr_use_ffmpeg,
+        denoise_mode=settings.asr_denoise,
     )
+    # Грузим whisper сразу: если весов нет или они не скачиваются, бот упадёт при старте,
+    # а не на первом сообщении пользователя
+    asr.load()
+    log.info("whisper ready model=%s device=%s", settings.whisper_model, asr.device)
     return VoicePipeline(asr, classifier, max_concurrent=settings.max_concurrent_jobs)

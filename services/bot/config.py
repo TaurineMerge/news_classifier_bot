@@ -1,6 +1,7 @@
 """Настройки бота. Читаются из переменных окружения или файла .env в корне проекта."""
 
 from pathlib import Path
+from typing import Literal
 
 from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -14,10 +15,14 @@ class BotSettings(BaseSettings):
 
     # ASR (faster-whisper)
     whisper_model: str = "small"  # tiny / base / small / medium / large-v3 или путь к весам
-    whisper_device: str = "cpu"  # cpu / cuda
+    whisper_device: str = "cpu"  # cpu / cuda / auto (cuda с откатом на cpu)
     whisper_compute_type: str = "int8"  # int8 для CPU, float16 для GPU
     whisper_language: str = "ru"
     whisper_beam_size: int = Field(5, ge=1)
+
+    # Предобработка аудио через ffmpeg (16 кГц mono + шумоподавление)
+    asr_use_ffmpeg: bool = True
+    asr_denoise: Literal["auto", "on", "off"] = "auto"
 
     # Классификатор
     classifier_backend: str = "tfidf"  # stub / tfidf

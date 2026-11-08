@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 # Зависимости общего пакета src/newsbot (ASR + классификатор) — их получают и ML, и сервисы
 dependencies = [
+    "av<19",
     "faster-whisper>=1.1",
     "joblib>=1.4,<2",
     "scikit-learn>=1.5,<2",
