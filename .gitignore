@@ -16,8 +16,11 @@ dist/
 # Данные и модели — не коммитим (оставляем только .gitkeep)
 ml/data/*
 !ml/data/.gitkeep
-ml/models/*
+#ml/models/*
 !ml/models/.gitkeep
+results/
+ml/models/.locks/
+ml/models/CACHEDIR.TAG
 *.pt
 *.pth
 *.bin

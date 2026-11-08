@@ -1,18 +1,7 @@
-"""Классификатор тематики новостей.
-
-Классификатор — это класс с методом predict(text) -> TopicPrediction.
-Пока модели нет, работает StubKeywordClassifier (поиск по ключевым словам).
-
-Необходимо:
-  1. написать класс с методом predict(text) -> TopicPrediction;
-  2. зарегистрировать его в build_classifier() под новым именем;
-  3. добавить тесты в tests/.
-"""
-
+"""Классификатор тематики новостей."""
 import re
 from typing import ClassVar, Protocol
-
-from newsbot.schemas import TopicPrediction
+from .schemas import TopicPrediction
 
 FALLBACK_TOPIC = "другое"
 
@@ -22,8 +11,7 @@ class TopicClassifier(Protocol):
 
 
 class StubKeywordClassifier:
-    """Временная заглушка, чтобы остальная система работала без модели."""
-
+    """Временная заглушка."""
     KEYWORDS: ClassVar[dict[str, tuple[str, ...]]] = {
         "политика": ("выбор", "президент", "правительств", "депутат", "закон", "министр", "санкц"),
         "экономика": ("рубл", "доллар", "курс", "инфляц", "банк", "бюджет", "цен", "рынок"),

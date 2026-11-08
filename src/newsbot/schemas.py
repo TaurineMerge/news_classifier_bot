@@ -1,5 +1,4 @@
 """Контракт между частями системы."""
-
 from dataclasses import dataclass
 
 
