@@ -8,6 +8,9 @@ from pathlib import Path
 
 from newsbot.asr import WhisperASR
 
+# Голосовые из Telegram приходят в .ogg (Opus)
+AUDIO_EXTENSIONS = {".ogg", ".opus", ".mp3", ".wav", ".m4a", ".flac"}
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(levelname)s: %(message)s",
@@ -25,7 +28,7 @@ def transcribe_batch(
     max_files: int | None = None,
 ) -> None:
     """
-    Транскрибирует все MP3 файлы в audio_dir и сохраняет результаты.
+    Транскрибирует все аудиофайлы (ogg, opus, mp3, wav, m4a, flac) в audio_dir и сохраняет результаты.
 
     Args:
         audio_dir: папка с аудиофайлами
@@ -41,14 +44,14 @@ def transcribe_batch(
     if not audio_dir.exists():
         raise FileNotFoundError(f"Audio directory not found: {audio_dir}")
 
-    # Собираем все MP3 файлы
-    audio_files = sorted(audio_dir.glob("*.mp3"))
+    # Собираем все аудиофайлы
+    audio_files = sorted(p for p in audio_dir.iterdir() if p.suffix.lower() in AUDIO_EXTENSIONS)
 
     if max_files:
         audio_files = audio_files[:max_files]
 
     if not audio_files:
-        logger.warning("No MP3 files found in %s", audio_dir)
+        logger.warning("No audio files found in %s", audio_dir)
         return
 
     logger.info("Found %d audio files", len(audio_files))

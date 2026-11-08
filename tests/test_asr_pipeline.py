@@ -278,6 +278,14 @@ def _patch_cuda_device_count(monkeypatch: pytest.MonkeyPatch, count: int) -> Non
 # ---------------------------------------------------------------------------
 
 
+@pytest.fixture(autouse=True)
+def _temp_files_in_tmp_path(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    """Временные WAV из prepare() — во временную папку теста, а не в системный /tmp."""
+    import tempfile
+
+    monkeypatch.setattr(tempfile, "tempdir", str(tmp_path))
+
+
 @pytest.fixture
 def input_audio(tmp_path: Path) -> Path:
     audio_file = tmp_path / "voice.ogg"
