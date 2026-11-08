@@ -1,7 +1,8 @@
 """Классификатор тематики новостей.
 
 Классификатор — это класс с методом predict(text) -> TopicPrediction.
-Пока модели нет, работает StubKeywordClassifier (поиск по ключевым словам).
+По умолчанию работает StubKeywordClassifier (поиск по ключевым словам).
+Обученный baseline подключается как backend="tfidf" с явным model_path.
 
 Необходимо:
   1. написать класс с методом predict(text) -> TopicPrediction;
@@ -10,6 +11,7 @@
 """
 
 import re
+from pathlib import Path
 from typing import ClassVar, Protocol
 
 from newsbot.schemas import TopicPrediction
@@ -46,7 +48,15 @@ class StubKeywordClassifier:
         return TopicPrediction(topic=topic, confidence=round(scores[topic] / total, 3))
 
 
-def build_classifier(backend: str = "stub") -> TopicClassifier:
+def build_classifier(
+    backend: str = "stub", *, model_path: str | Path | None = None, min_confidence: float = 0.0
+) -> TopicClassifier:
     if backend == "stub":
         return StubKeywordClassifier()
+    if backend == "tfidf":
+        from newsbot.tfidf_classifier import TfidfTopicClassifier
+
+        if model_path is None:
+            raise ValueError("model_path is required for the tfidf backend")
+        return TfidfTopicClassifier(model_path, min_confidence=min_confidence)
     raise ValueError(f"Unknown classifier backend: {backend!r}")

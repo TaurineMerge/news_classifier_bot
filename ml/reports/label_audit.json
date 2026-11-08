@@ -1,0 +1,53 @@
+{
+  "rule_version": "lenta-three-topics-v3",
+  "rows": 30,
+  "per_weak_class": 10,
+  "by_class": {
+    "education": {
+      "agrees": 8,
+      "out_of_scope": 2
+    },
+    "entertainment": {
+      "ambiguous": 3,
+      "agrees": 7
+    },
+    "technology": {
+      "agrees": 10
+    }
+  },
+  "reviewer": "Codex assistant, not independent human gold",
+  "scope": "title + first 25 words, diagnostic only",
+  "reviewed_ids": [
+    "b46cb2ea0af418b81d292df946f859a48163331b31b5f268c830852bc074a102",
+    "58accc599d733709ef2caa7b4f03433f8c4ff0775aabdb744239f6d372b3f076",
+    "f60bd180db1434f65376af7b79214c392e94ea991bb82fbc6ae6070dd824d3bf",
+    "cd28d6729811ddc56fe8ef3bdd5197eaa4504f432c11bad539a1bf6dd86965fc",
+    "60838842dff15a7e8b27a4e1537eeae2a1e6ec883917d950c1478e7739140324",
+    "21845c4cc3fc4cf66c74bb6047b80c8b16fce7051dbe90683a85d3156455d3a3",
+    "adb3ef582a66f3238e62b0f6bfd8abb1be8317056e93399f5ab3bc31bbfbbfd2",
+    "6acb5169daba624b81bcf6aad665d9375e30ab0250323db07ad531fe6c0235af",
+    "3692bc349e878af7e92f796c41b82f7e76885cbf7b973d90f92fa9ff6ec7016d",
+    "b65dd3cd41032a8fc4a6873ccd1b906eea6e579eeae654459d33016eaeac91cc",
+    "eea8db3e99ca3931b230e2e53bfce03236ff5b8361c3ab510f63abd2208fa253",
+    "17f275ed506fb645769adb507c69472c6192a7e9a7e327e123ae35977b77977b",
+    "fa878762984711e3b18688580b5cc28f85383ce5fdfabc79eb25b34d76548f5b",
+    "2108839a7105fbf926ed7b090cb4df1ad4a221e4c2af178fc5cae356dd6888f4",
+    "a7ebda26976e4d608343cb37d5be70be21639dabb4215879983381a84fed43a0",
+    "d3024a94c118d2274d8567b0d91cae940ee04cb239623078870b65fcfe9637f3",
+    "7b8bf80190e05c5581630972d793abfd6aa06cbb0a867eaf440ff6ee4f0b8280",
+    "e9343e09bc45c1566a31a56f8aeb2f50569079fdbd55ed74bcd87c2b5553f7bd",
+    "da708d10469387897b34621d6774cd02eddd3b83de59e457d56553fa4d4c529c",
+    "4f76e35cc33c0e9196076ecf38de665a3d65220a8c93fc4714aeca68d4cbef78",
+    "b005f81f65856f395fbdebbc1b77225c79c1970672556cba43472f8845ad7ffd",
+    "c7ed113a6c1941aea2158da6a8cd3562d90896637ea8ae26d9967474dd333226",
+    "949813251ecff7d8f7484e3898e37d8847f5203b05c949e4f3d3823a632b1e96",
+    "29062d77d03ecfbdb542ec245e0da676e7ce5f0d704f6417995f952e146a5ab0",
+    "7ac5fd987a8d391a0643acd0db3913afa635212ce9f42bb7af9de3b2c6e57d0e",
+    "962353d019b6df154c3d4a3f55d45815df122b1c913d2f0280f9a87641c01f6c",
+    "15db23816d759eb76b10f479547e83d325f31143fce17f18ab907549a613db37",
+    "7ec64d3de2ea04e4507a6271e654b849f3a0a38013f1154f92fb8cf39e54084d",
+    "692ce0b6a5d11332c085d0fbe28f096b285893e8d3cb3ef27770cb2ff2146bfb",
+    "081f779eec56c56360eddbadc9ff68fbcff4956fa5bb261c9692f87449012665"
+  ],
+  "test_policy": "rules and model frozen; known errors recorded, not removed from test"
+}

@@ -2,6 +2,21 @@
 
 Рабочее место ML-команды.
 
+Готовый baseline Data: [отчёт и инструкции](reports/DATA_HANDOFF.md),
+[ноутбук](notebooks/01_lenta_baseline.ipynb).
+
+```bash
+uv sync --locked --group ml
+uv run --group ml python -m ml.scripts.download_lenta
+uv run --group ml python -m ml.scripts.lenta_data
+uv run --group ml python -m ml.scripts.train_text_baseline
+```
+
+В `ml/scripts/` находятся вспомогательные функции подготовки и обучения, которые вызывает
+ноутбук; эксперимент и сравнение моделей доступны в ноутбуке. Runtime backend —
+`src/newsbot/tfidf_classifier.py`. Исходный архив, JSONL, токены и CSV проверки лежат в
+`ml/data/`, модель со словарём — в `ml/models/`: всё это исключено из Git.
+
 ```
 ml/
 ├─ notebooks/   эксперименты, EDA, сравнение моделей

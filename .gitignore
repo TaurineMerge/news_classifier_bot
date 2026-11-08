@@ -13,11 +13,6 @@ dist/
 *.env
 !.env.example
 
-# Данные и модели — не коммитим (оставляем только .gitkeep)
-ml/data/*
-!ml/data/.gitkeep
-ml/models/*
-!ml/models/.gitkeep
 *.pt
 *.pth
 *.bin
@@ -39,3 +34,9 @@ ml/models/*
 .idea/
 .vscode/
 .DS_Store
+
+# Результаты прогонов ASR (ml/scripts/batch_transcribe.py)
+results/
+
+# Состояние деплоя на сервере (deploy/deploy.sh)
+.deploy/
