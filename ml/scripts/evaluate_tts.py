@@ -28,7 +28,9 @@ def edit_distance(reference: list[str], hypothesis: list[str]) -> int:
 
 
 def evaluate(audio_dir: Path, model_path: Path, report_dir: Path, whisper_size: str = "tiny") -> dict:
-    entries = [json.loads(line) for line in (audio_dir / "manifest.jsonl").read_text().splitlines()]
+    entries = [
+        json.loads(line) for line in (audio_dir / "manifest.jsonl").read_text(encoding="utf-8").splitlines()
+    ]
     entries = [r for r in entries if r["split"] == "test"]
     if not entries:
         raise ValueError("No held-out test audio in manifest")

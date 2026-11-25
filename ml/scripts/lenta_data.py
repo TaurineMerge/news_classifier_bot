@@ -128,7 +128,7 @@ def prepare(archive: Path, out: Path, seed: int = 20261028) -> dict:
     pools = {(split, label): [] for split in caps for label in LABELS}
     counts, rejected = Counter(), Counter()
     exclusion_path = Path(__file__).resolve().parents[1] / "reports" / "previous_review_ids.txt"
-    reviewed_ids = set(exclusion_path.read_text().splitlines())
+    reviewed_ids = set(exclusion_path.read_text(encoding="utf-8").splitlines())
     seen_body, seen_title, seen_input, seen_url = set(), set(), set(), set()
     csv.field_size_limit(10_000_000)
     total = 0

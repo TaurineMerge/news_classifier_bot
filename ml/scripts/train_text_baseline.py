@@ -24,14 +24,14 @@ from ml.scripts.lenta_data import LABELS, MAX_WORDS, normalize, split_from_date
 
 
 def read_splits(data: Path) -> tuple[dict, dict]:
-    metadata = json.loads((data / "metadata.json").read_text())
+    metadata = json.loads((data / "metadata.json").read_text(encoding="utf-8"))
     splits = {}
     for name in ("train", "validation", "test"):
         path = data / f"{name}.jsonl"
         digest = hashlib.sha256(path.read_bytes()).hexdigest()
         if digest != metadata["splits"][name]["sha256"]:
             raise ValueError(f"Dataset fingerprint mismatch: {name}")
-        rows = [json.loads(line) for line in path.read_text().splitlines()]
+        rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
         if {r["label"] for r in rows} != set(LABELS):
             raise ValueError(f"Missing classes in {name}")
         if any(split_from_date(r["date"]) != name for r in rows):

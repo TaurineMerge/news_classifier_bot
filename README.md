@@ -33,7 +33,7 @@ newsbot/
 │  ├─ asr.py          распознавание речи (faster-whisper)
 │  └─ classifier.py   заглушка и опциональный TF-IDF backend
 ├─ ml/                эксперименты ML-команды → см. ml/README.md
-├─ services/          запускаемые сервисы (бот появится здесь)
+├─ services/bot/      Telegram-бот → см. services/bot/README.md
 └─ tests/             тесты
 ```
 
@@ -51,9 +51,28 @@ prediction = classifier.predict("В университете начался пр
 print(prediction.topic, prediction.confidence)
 ```
 
+Обученный `text_baseline.joblib` содержит sklearn-объекты, поэтому `scikit-learn` и `joblib`
+входят в основные зависимости: модель загружается и в боте, без группы `ml`.
+
 Backend возвращает `TopicPrediction` с темами «образование», «развлечения», «технологии».
 Пустой ввод и неизвестный словарь дают «другое». Оценки модели получены на предварительной
 разметке; готовность к реальным голосовым сообщениям ими не подтверждена.
+
+## Бот
+
+```bash
+cp .env.example .env            # вписать BOT_TOKEN от @BotFather
+uv sync --group bot
+uv run python -m services.bot
+```
+
+Или в Docker: `docker compose up -d --build`. Подробности — [services/bot/README.md](services/bot/README.md).
+
+## Деплой
+
+Мерж PR в `main` автоматически собирает образ и обновляет бота на сервере, с автооткатом,
+если новая версия не стартовала. Настройка сервера, откат и обновление модели —
+[docs/deploy.md](docs/deploy.md).
 
 ## Частые команды
 
