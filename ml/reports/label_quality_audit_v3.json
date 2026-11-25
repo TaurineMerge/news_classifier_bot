@@ -1,0 +1,401 @@
+{
+  "dataset": "lenta-three-topics-v3 / test 2019",
+  "test_sha256": "20b586c4b70f62b9eb59b46e317c48a84c6cde4871b9cf7a92806c8447b8ed92",
+  "population_rows": 366,
+  "sample_rows": 60,
+  "per_weak_class": 20,
+  "salt": "newsbot-lenta-v3-label-audit-2026-11-10",
+  "sample_rule": "Per weak label, sort by ascending SHA-256 of salt + ':' + document ID, take the first 20. Review order is sorted by SHA-256 of salt + ':order:' + document ID.",
+  "review_scope": "Semantic diagnostic using headline and body lead (at least first 30 words, additional context when needed). Model predictions not supplied with audit sample. Single review, no independent human consensus.",
+  "counts": {
+    "clean": 51,
+    "noisy": 6,
+    "ambiguous": 3
+  },
+  "by_weak_class": {
+    "education": {
+      "clean": 16,
+      "noisy": 3,
+      "ambiguous": 1
+    },
+    "entertainment": {
+      "clean": 15,
+      "noisy": 3,
+      "ambiguous": 2
+    },
+    "technology": {
+      "clean": 20
+    }
+  },
+  "sample": [
+    {
+      "id": "8dd067c9089d33e77bee3532bb80256ea626bc47beace7e2d0caf6dac3e20554",
+      "weak_label": "education",
+      "review_label": "education",
+      "status": "clean"
+    },
+    {
+      "id": "17f275ed506fb645769adb507c69472c6192a7e9a7e327e123ae35977b77977b",
+      "weak_label": "entertainment",
+      "review_label": "entertainment",
+      "status": "clean"
+    },
+    {
+      "id": "ae78d7727027c398ffffad851bb5529544900447d0888c85ad8490e519bdf4cb",
+      "weak_label": "technology",
+      "review_label": "technology",
+      "status": "clean"
+    },
+    {
+      "id": "31370c8c6dd113c2e9c4ef080c72cdeb298bd1d63812a77787e039bc70af2539",
+      "weak_label": "entertainment",
+      "review_label": "entertainment",
+      "status": "clean"
+    },
+    {
+      "id": "4f769ff9cbbd199b04c03553694b908c2727bbe4dc6aff9ed1f075fcb8f533d2",
+      "weak_label": "education",
+      "review_label": "education",
+      "status": "clean"
+    },
+    {
+      "id": "2eaba3e4d3e0f711a261e31c2d6d1dc79ca5e1ff63cf7aa580c3012acd4b49f4",
+      "weak_label": "technology",
+      "review_label": "technology",
+      "status": "clean"
+    },
+    {
+      "id": "3dd5c5dae9cb2edb09d8ad4b8563a94e5f6e2ea75f0d98f93f27ce130ab8b99e",
+      "weak_label": "entertainment",
+      "review_label": "entertainment",
+      "status": "clean"
+    },
+    {
+      "id": "bb64d6584db05cf939beff87ef0758c8f09b20b134f7512c465e8e02e43a9257",
+      "weak_label": "entertainment",
+      "review_label": "out_of_scope",
+      "status": "noisy",
+      "note": "Политическая позиция музыканта; песни упомянуты как контекст."
+    },
+    {
+      "id": "03f905951983f6e9dc203794ce206b5bfa96b97ef2d70bd1940e1cc4d4b39fec",
+      "weak_label": "education",
+      "review_label": "out_of_scope",
+      "status": "noisy",
+      "note": "Серия публикаций о здоровье и спорте; профессия героини второстепенна."
+    },
+    {
+      "id": "abe87db29807c4cde52065531945b17dfddfff09b7d365417a0b55e1763c3d03",
+      "weak_label": "technology",
+      "review_label": "technology",
+      "status": "clean"
+    },
+    {
+      "id": "1ccbf9e19f147555e9f71950bb4b0e9d2096d24f2c133669e418d80f8b4668ab",
+      "weak_label": "technology",
+      "review_label": "technology",
+      "status": "clean"
+    },
+    {
+      "id": "05e05a4a157df8b55ce88e4d43fdb1494b3695ab4959e31a7d5b844c58675f81",
+      "weak_label": "technology",
+      "review_label": "technology",
+      "status": "clean"
+    },
+    {
+      "id": "2231963a56ec3002990d1c18edf030ecb76eee5be89d71f26f22bb0b58e1d0bd",
+      "weak_label": "technology",
+      "review_label": "technology",
+      "status": "clean"
+    },
+    {
+      "id": "c568add120633f3ecbbcae6ee0f92d001e23f03d66ba14ae706559d78180c1d9",
+      "weak_label": "education",
+      "review_label": "education",
+      "status": "clean"
+    },
+    {
+      "id": "f69d390f133382a8c1178e41301c2aef26f63068201c21a7a1ea9350cc09da05",
+      "weak_label": "entertainment",
+      "review_label": "ambiguous",
+      "status": "ambiguous",
+      "note": "Отказ от участия в музыкальном конкурсе и политическая реакция."
+    },
+    {
+      "id": "2e3452d22f93bf03ca4a1811e27c2522dd0a8077dd7a97174bfd6885fce7fe60",
+      "weak_label": "entertainment",
+      "review_label": "entertainment",
+      "status": "clean"
+    },
+    {
+      "id": "643fd9794973e43440f0075ca03857e99e63d7dfb223a96e37dadff3ae0ee933",
+      "weak_label": "technology",
+      "review_label": "technology",
+      "status": "clean"
+    },
+    {
+      "id": "ff23bf50c2f675858365007dbb0a1be8bc97fcac4e6449ee46fe873e21f553a3",
+      "weak_label": "entertainment",
+      "review_label": "entertainment",
+      "status": "clean"
+    },
+    {
+      "id": "22b5d7ef297b08bb44e4cc4059615a302947d1309e70c0556f878c80d9c039fb",
+      "weak_label": "entertainment",
+      "review_label": "entertainment",
+      "status": "clean"
+    },
+    {
+      "id": "06a5a477c1864ce2d1a82c909676c6e01b6a9b65108fceacdc1ea67a4b45ae10",
+      "weak_label": "entertainment",
+      "review_label": "entertainment",
+      "status": "clean"
+    },
+    {
+      "id": "d8d72642876135f391e62c84cae1c9a88c640d9e0af6d44369ce6c5c90dbf91b",
+      "weak_label": "education",
+      "review_label": "education",
+      "status": "clean"
+    },
+    {
+      "id": "7e2bded6654df0b476900a59447467a7907b88b990589b9d394f39f85781cc35",
+      "weak_label": "technology",
+      "review_label": "technology",
+      "status": "clean"
+    },
+    {
+      "id": "f1a31d231cedcd8b654f47bf961fdea6c23b1cb08707cecd05f80893979a6c09",
+      "weak_label": "education",
+      "review_label": "education",
+      "status": "clean"
+    },
+    {
+      "id": "936ccb593311d9571a80011369427b1e6eb6ffa5724f721f8418a095174566fb",
+      "weak_label": "education",
+      "review_label": "education",
+      "status": "clean"
+    },
+    {
+      "id": "949813251ecff7d8f7484e3898e37d8847f5203b05c949e4f3d3823a632b1e96",
+      "weak_label": "technology",
+      "review_label": "technology",
+      "status": "clean"
+    },
+    {
+      "id": "eba9547ebacddd2facbad353f2d47bd8b161eace7336df88680c0c70e0513c0e",
+      "weak_label": "entertainment",
+      "review_label": "entertainment",
+      "status": "clean"
+    },
+    {
+      "id": "abc370a9c00409bc636601cbe029a1c9331b2cb3fb0694b9629fc388116c5bfc",
+      "weak_label": "technology",
+      "review_label": "technology",
+      "status": "clean"
+    },
+    {
+      "id": "4b24540ab5bcbeece3784317d7c9eb2f5c9942a0da7ddc804171f0e23bc215d7",
+      "weak_label": "education",
+      "review_label": "education",
+      "status": "clean"
+    },
+    {
+      "id": "eea8db3e99ca3931b230e2e53bfce03236ff5b8361c3ab510f63abd2208fa253",
+      "weak_label": "entertainment",
+      "review_label": "out_of_scope",
+      "status": "noisy",
+      "note": "Судебный спор о членстве в киноакадемии."
+    },
+    {
+      "id": "2dd2b3d8d55047f1eef45b8036b3981c3e16161d63ec80d519b0ceab098a62f2",
+      "weak_label": "entertainment",
+      "review_label": "entertainment",
+      "status": "clean"
+    },
+    {
+      "id": "ae8a5b32d7a5d5404815250d026580985b448bf7f2abbb821162fdfffc7f4f28",
+      "weak_label": "education",
+      "review_label": "education",
+      "status": "clean"
+    },
+    {
+      "id": "15db23816d759eb76b10f479547e83d325f31143fce17f18ab907549a613db37",
+      "weak_label": "technology",
+      "review_label": "technology",
+      "status": "clean"
+    },
+    {
+      "id": "90b896ef29b45c817769f5c112fcb4bf116dabf3657f128c010e4c08f445e97e",
+      "weak_label": "entertainment",
+      "review_label": "entertainment",
+      "status": "clean"
+    },
+    {
+      "id": "4bb01b3b273137717c3d5d557294959e2592a2d6058e45501734926661c3f45f",
+      "weak_label": "education",
+      "review_label": "education",
+      "status": "clean"
+    },
+    {
+      "id": "c7ed113a6c1941aea2158da6a8cd3562d90896637ea8ae26d9967474dd333226",
+      "weak_label": "technology",
+      "review_label": "technology",
+      "status": "clean"
+    },
+    {
+      "id": "e6079150479bc57ac4d8cfb70f316a7ebabb9d6785cb92b7a12798bd39d24c10",
+      "weak_label": "entertainment",
+      "review_label": "entertainment",
+      "status": "clean"
+    },
+    {
+      "id": "836fd23c9fdfcdcb41a17ba4ee5bf09fcb31926a6fb19181d1943e3b1a93f523",
+      "weak_label": "education",
+      "review_label": "ambiguous",
+      "status": "ambiguous",
+      "note": "Кадровый конфликт и реакция вуза на жалобу о студенческом общежитии."
+    },
+    {
+      "id": "0cc990488b77d2da83bf0a4234647f55be1e75ae0ebf3a04ae6fac39a0daf0fd",
+      "weak_label": "technology",
+      "review_label": "technology",
+      "status": "clean"
+    },
+    {
+      "id": "2b0221e7b90935ef2e061c7fbe0214154d0a3db1fcf20c741a3da7cd9fff9bed",
+      "weak_label": "entertainment",
+      "review_label": "ambiguous",
+      "status": "ambiguous",
+      "note": "Финансирование и реклама вокруг культурного события."
+    },
+    {
+      "id": "aa7f3cbcea61869135e4c75355dba3f890e51a03dca1f3dd8b01bfd0ee05a5e5",
+      "weak_label": "technology",
+      "review_label": "technology",
+      "status": "clean"
+    },
+    {
+      "id": "adb3ef582a66f3238e62b0f6bfd8abb1be8317056e93399f5ab3bc31bbfbbfd2",
+      "weak_label": "education",
+      "review_label": "education",
+      "status": "clean"
+    },
+    {
+      "id": "7a39f405c6b31d53763ecd05fc0f5625450fd3db3cd5b7f436aeb67a98a729cc",
+      "weak_label": "education",
+      "review_label": "out_of_scope",
+      "status": "noisy",
+      "note": "Личная история родов; экзамен задаёт обстоятельства."
+    },
+    {
+      "id": "34846b0b0b8bc99782b573d34d64843982c0b2569d3ae25c6aefc1736c57cc5a",
+      "weak_label": "entertainment",
+      "review_label": "entertainment",
+      "status": "clean"
+    },
+    {
+      "id": "eac5b19bb9e16b69855e0553298c59b9014595f6548c79c0052170f9bcbddf14",
+      "weak_label": "technology",
+      "review_label": "technology",
+      "status": "clean"
+    },
+    {
+      "id": "a18e4172a510a1f9ee7edbcd75b3927dfbdd071f13737a016ab811cc3d7259ed",
+      "weak_label": "technology",
+      "review_label": "technology",
+      "status": "clean"
+    },
+    {
+      "id": "ff53378d03c8c3e73d1fe748f6806f4fa64c964e95763237e575fec1cbab98d7",
+      "weak_label": "education",
+      "review_label": "education",
+      "status": "clean"
+    },
+    {
+      "id": "e36a37b6f657ae5282715deb7c8e2641c1f1264f3a4ad00c9472e338901c1a8a",
+      "weak_label": "entertainment",
+      "review_label": "entertainment",
+      "status": "clean"
+    },
+    {
+      "id": "66d74c97d8f2600d70dcd9668d364f654d69a28c9713273de0beaefb84ae642e",
+      "weak_label": "education",
+      "review_label": "education",
+      "status": "clean"
+    },
+    {
+      "id": "364ab29924d247faad262b16fabd4d9d3a10e2e6db7ba3e8334484493d97ada5",
+      "weak_label": "education",
+      "review_label": "out_of_scope",
+      "status": "noisy",
+      "note": "Личная история родов и возвращения на экзамен; правила поступления не меняются."
+    },
+    {
+      "id": "8bcefee15da7a42fd28729ba1a8f472a675f73beaf1c10c27ba62afdaa71549a",
+      "weak_label": "education",
+      "review_label": "education",
+      "status": "clean"
+    },
+    {
+      "id": "2d697b898f9f982a22534f07a89764201008df661f78a664817af0240e5e655a",
+      "weak_label": "education",
+      "review_label": "education",
+      "status": "clean"
+    },
+    {
+      "id": "63421c6205dfeef9c11cc1224f006bb5103e5eb1f3088309f1e5a3121460d094",
+      "weak_label": "entertainment",
+      "review_label": "entertainment",
+      "status": "clean"
+    },
+    {
+      "id": "dcc1bca07ff6b6d5ad25dbb75611776459db709d2a691548d8ae459fb86f19d3",
+      "weak_label": "entertainment",
+      "review_label": "entertainment",
+      "status": "clean"
+    },
+    {
+      "id": "c8416e6bb527ac483995cdc377f2a226a10475aac95f57686a20cd9dc56c9eec",
+      "weak_label": "technology",
+      "review_label": "technology",
+      "status": "clean"
+    },
+    {
+      "id": "4ef039e266de1cd3cf6780311c2cfd01d95c4d44956f1286efc49a9027af6578",
+      "weak_label": "entertainment",
+      "review_label": "out_of_scope",
+      "status": "noisy",
+      "note": "Здоровье актрисы; сериал поясняет, кто она."
+    },
+    {
+      "id": "73feb7f49ac1ae5e5e161d1a006576322f4d9d84a096187574dba8ce234c944f",
+      "weak_label": "technology",
+      "review_label": "technology",
+      "status": "clean"
+    },
+    {
+      "id": "4d486481b045f56a6119028f9ce377212e873cd73d072314d13429271006de5c",
+      "weak_label": "education",
+      "review_label": "education",
+      "status": "clean"
+    },
+    {
+      "id": "b7b56a4ad4aa535fa8967fe29dee632f6ec44a9fdd4b6bd62f63a2313f3e9608",
+      "weak_label": "education",
+      "review_label": "education",
+      "status": "clean"
+    },
+    {
+      "id": "081f779eec56c56360eddbadc9ff68fbcff4956fa5bb261c9692f87449012665",
+      "weak_label": "technology",
+      "review_label": "technology",
+      "status": "clean"
+    },
+    {
+      "id": "7d99098282168470d41b3d52ed2c8fc7877564d8d9cb8ca6f930a65cd2204a41",
+      "weak_label": "technology",
+      "review_label": "technology",
+      "status": "clean"
+    }
+  ]
+}

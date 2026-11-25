@@ -1,0 +1,848 @@
+{
+  "architecture": "TextCNN: train-only word vocabulary, learned embedding, parallel conv1d 3/4/5, max pool, dropout, linear head",
+  "torch": "2.8.0",
+  "device": "mps",
+  "data_splits": {
+    "train": {
+      "rows": 3066,
+      "per_class": 1022,
+      "sha256": "a51e81f226df11140f0016ec839e160c97fac31467fbbcde16d5ddc5063f354c"
+    },
+    "validation": {
+      "rows": 183,
+      "per_class": 61,
+      "sha256": "337936056a2b45a270eba4c8dd06960d0f44c6897df1a4a4f4fa37f847246f32"
+    },
+    "test": {
+      "rows": 366,
+      "per_class": 122,
+      "sha256": "20b586c4b70f62b9eb59b46e317c48a84c6cde4871b9cf7a92806c8447b8ed92"
+    }
+  },
+  "vocabulary_size": 20000,
+  "epochs": 8,
+  "selection": "highest validation macro-F1 across epochs and two fixed runs",
+  "selected_seed": 42,
+  "runs": [
+    {
+      "seed": 42,
+      "dropout": 0.3,
+      "best_epoch": 8,
+      "validation_macro_f1": 0.9241425704139924,
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 1.0922918717066448,
+          "validation": {
+            "accuracy": 0.7213114754098361,
+            "macro_f1": 0.712527628317102,
+            "weighted_f1": 0.7125276283171019,
+            "pr_auc_macro_average_precision_ovr": 0.8770359751323172,
+            "labels": [
+              "education",
+              "entertainment",
+              "technology"
+            ],
+            "confusion_matrix": [
+              [
+                50,
+                11,
+                0
+              ],
+              [
+                8,
+                53,
+                0
+              ],
+              [
+                14,
+                18,
+                29
+              ]
+            ],
+            "rows": 183
+          }
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.7621974013745785,
+          "validation": {
+            "accuracy": 0.7868852459016393,
+            "macro_f1": 0.7908999999615826,
+            "weighted_f1": 0.7908999999615827,
+            "pr_auc_macro_average_precision_ovr": 0.9288586278675476,
+            "labels": [
+              "education",
+              "entertainment",
+              "technology"
+            ],
+            "confusion_matrix": [
+              [
+                40,
+                21,
+                0
+              ],
+              [
+                3,
+                58,
+                0
+              ],
+              [
+                2,
+                13,
+                46
+              ]
+            ],
+            "rows": 183
+          }
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.4420686575273673,
+          "validation": {
+            "accuracy": 0.8306010928961749,
+            "macro_f1": 0.8312364284926548,
+            "weighted_f1": 0.8312364284926547,
+            "pr_auc_macro_average_precision_ovr": 0.9428818268809193,
+            "labels": [
+              "education",
+              "entertainment",
+              "technology"
+            ],
+            "confusion_matrix": [
+              [
+                39,
+                22,
+                0
+              ],
+              [
+                2,
+                59,
+                0
+              ],
+              [
+                1,
+                6,
+                54
+              ]
+            ],
+            "rows": 183
+          }
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.2897588402653734,
+          "validation": {
+            "accuracy": 0.8743169398907104,
+            "macro_f1": 0.8749544077473334,
+            "weighted_f1": 0.8749544077473334,
+            "pr_auc_macro_average_precision_ovr": 0.954507247686597,
+            "labels": [
+              "education",
+              "entertainment",
+              "technology"
+            ],
+            "confusion_matrix": [
+              [
+                45,
+                16,
+                0
+              ],
+              [
+                3,
+                58,
+                0
+              ],
+              [
+                1,
+                3,
+                57
+              ]
+            ],
+            "rows": 183
+          }
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.20174151100218296,
+          "validation": {
+            "accuracy": 0.8961748633879781,
+            "macro_f1": 0.897381120527307,
+            "weighted_f1": 0.897381120527307,
+            "pr_auc_macro_average_precision_ovr": 0.9583847265060204,
+            "labels": [
+              "education",
+              "entertainment",
+              "technology"
+            ],
+            "confusion_matrix": [
+              [
+                52,
+                9,
+                0
+              ],
+              [
+                6,
+                55,
+                0
+              ],
+              [
+                1,
+                3,
+                57
+              ]
+            ],
+            "rows": 183
+          }
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.12903269923602542,
+          "validation": {
+            "accuracy": 0.9234972677595629,
+            "macro_f1": 0.9241082218358101,
+            "weighted_f1": 0.9241082218358102,
+            "pr_auc_macro_average_precision_ovr": 0.9630853735355517,
+            "labels": [
+              "education",
+              "entertainment",
+              "technology"
+            ],
+            "confusion_matrix": [
+              [
+                56,
+                5,
+                0
+              ],
+              [
+                6,
+                55,
+                0
+              ],
+              [
+                1,
+                2,
+                58
+              ]
+            ],
+            "rows": 183
+          }
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.09597398682187001,
+          "validation": {
+            "accuracy": 0.9180327868852459,
+            "macro_f1": 0.9187671578873063,
+            "weighted_f1": 0.9187671578873063,
+            "pr_auc_macro_average_precision_ovr": 0.966757387215568,
+            "labels": [
+              "education",
+              "entertainment",
+              "technology"
+            ],
+            "confusion_matrix": [
+              [
+                54,
+                7,
+                0
+              ],
+              [
+                4,
+                57,
+                0
+              ],
+              [
+                2,
+                2,
+                57
+              ]
+            ],
+            "rows": 183
+          }
+        },
+        {
+          "epoch": 8,
+          "train_loss": 0.06974462908692658,
+          "validation": {
+            "accuracy": 0.9234972677595629,
+            "macro_f1": 0.9241425704139924,
+            "weighted_f1": 0.9241425704139924,
+            "pr_auc_macro_average_precision_ovr": 0.967879411986599,
+            "labels": [
+              "education",
+              "entertainment",
+              "technology"
+            ],
+            "confusion_matrix": [
+              [
+                54,
+                7,
+                0
+              ],
+              [
+                4,
+                57,
+                0
+              ],
+              [
+                1,
+                2,
+                58
+              ]
+            ],
+            "rows": 183
+          }
+        }
+      ],
+      "test": {
+        "accuracy": 0.953551912568306,
+        "macro_f1": 0.9535133149678604,
+        "weighted_f1": 0.9535133149678604,
+        "pr_auc_macro_average_precision_ovr": 0.9927868378992889,
+        "labels": [
+          "education",
+          "entertainment",
+          "technology"
+        ],
+        "confusion_matrix": [
+          [
+            119,
+            3,
+            0
+          ],
+          [
+            8,
+            112,
+            2
+          ],
+          [
+            1,
+            3,
+            118
+          ]
+        ],
+        "rows": 366
+      },
+      "checkpoint_sha256": "f6da53dd69f209524ba1141220c01ef9554a322c773732c883db6b2e812e064a",
+      "reload_predictions_match": true,
+      "errors": [
+        {
+          "id": "440f807e7415685975925c41505eaeabc6a40fa4c5099ace55068b010fc54f94",
+          "expected": "entertainment",
+          "prediction": "technology"
+        },
+        {
+          "id": "4d033e8349b3fb105161b5aa06ee076b736b245483af802a72ae460f2df35baf",
+          "expected": "technology",
+          "prediction": "entertainment"
+        },
+        {
+          "id": "50de79cbd77b10a0945408c817169ea76a00389c51f182953eff91288b7f429d",
+          "expected": "entertainment",
+          "prediction": "education"
+        },
+        {
+          "id": "2097a5f9baf83b1c8e05e28c5761ede6edd92de58114a3ac0b7b470defa2c352",
+          "expected": "entertainment",
+          "prediction": "education"
+        },
+        {
+          "id": "21adcc23dda239303aeb3d07d2559cd06dcedaa429a1a83f5df73814df010e44",
+          "expected": "technology",
+          "prediction": "entertainment"
+        },
+        {
+          "id": "97227165119010e36853485f6640310a853f0e0488671c13ad07a3ec197fedec",
+          "expected": "entertainment",
+          "prediction": "education"
+        },
+        {
+          "id": "03f905951983f6e9dc203794ce206b5bfa96b97ef2d70bd1940e1cc4d4b39fec",
+          "expected": "education",
+          "prediction": "entertainment"
+        },
+        {
+          "id": "e0fb31edd640cd0a41aeed136d921594e0a1cb02974456af70bf7b2d00865500",
+          "expected": "education",
+          "prediction": "entertainment"
+        },
+        {
+          "id": "bff19c783905ad84e27de75944fd5d11692735654b3a82fd41577dc552c93a38",
+          "expected": "education",
+          "prediction": "entertainment"
+        },
+        {
+          "id": "5fb075652d3912385c6705e831952403cbdb4756a60f9d1f6ec8b804d3aea1d4",
+          "expected": "entertainment",
+          "prediction": "education"
+        },
+        {
+          "id": "a4001f63cc1982dcee6a4260635cc8aaf22cc5d5dd5f12d673d0dfc7296f9142",
+          "expected": "entertainment",
+          "prediction": "education"
+        },
+        {
+          "id": "2b0221e7b90935ef2e061c7fbe0214154d0a3db1fcf20c741a3da7cd9fff9bed",
+          "expected": "entertainment",
+          "prediction": "technology"
+        },
+        {
+          "id": "33c5031562c9bfb3ef7a652f48b334b038d9bf92b544ffe430ff9ba41430a11d",
+          "expected": "entertainment",
+          "prediction": "education"
+        },
+        {
+          "id": "4fdbe81b971fa23ed3a6c514204c6e0f13147bc215ffece961b0e0b0e11b700d",
+          "expected": "technology",
+          "prediction": "entertainment"
+        },
+        {
+          "id": "899c5ef3b427159f5bd7129674caf4c167840debe5d4da43ff7afa9e28f665dc",
+          "expected": "technology",
+          "prediction": "education"
+        },
+        {
+          "id": "1040a72e2e1243b5ae0098d72a0adda0f42465c07d0d5d90e48d984f90ee808d",
+          "expected": "entertainment",
+          "prediction": "education"
+        },
+        {
+          "id": "3142dc727c6db9a171d8d35748c6bf68d18e2d554e90406052a854bd84a3657b",
+          "expected": "entertainment",
+          "prediction": "education"
+        }
+      ]
+    },
+    {
+      "seed": 20261125,
+      "dropout": 0.5,
+      "best_epoch": 8,
+      "validation_macro_f1": 0.8972654561780525,
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 1.2449880267182987,
+          "validation": {
+            "accuracy": 0.6885245901639344,
+            "macro_f1": 0.6849377711723971,
+            "weighted_f1": 0.6849377711723971,
+            "pr_auc_macro_average_precision_ovr": 0.787747821709556,
+            "labels": [
+              "education",
+              "entertainment",
+              "technology"
+            ],
+            "confusion_matrix": [
+              [
+                35,
+                12,
+                14
+              ],
+              [
+                11,
+                41,
+                9
+              ],
+              [
+                6,
+                5,
+                50
+              ]
+            ],
+            "rows": 183
+          }
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.9126123587290446,
+          "validation": {
+            "accuracy": 0.6721311475409836,
+            "macro_f1": 0.6717251002965288,
+            "weighted_f1": 0.6717251002965289,
+            "pr_auc_macro_average_precision_ovr": 0.8997422363284544,
+            "labels": [
+              "education",
+              "entertainment",
+              "technology"
+            ],
+            "confusion_matrix": [
+              [
+                27,
+                34,
+                0
+              ],
+              [
+                2,
+                59,
+                0
+              ],
+              [
+                1,
+                23,
+                37
+              ]
+            ],
+            "rows": 183
+          }
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.7166431397199631,
+          "validation": {
+            "accuracy": 0.8524590163934426,
+            "macro_f1": 0.8550763274336283,
+            "weighted_f1": 0.8550763274336284,
+            "pr_auc_macro_average_precision_ovr": 0.9371652820957731,
+            "labels": [
+              "education",
+              "entertainment",
+              "technology"
+            ],
+            "confusion_matrix": [
+              [
+                51,
+                10,
+                0
+              ],
+              [
+                8,
+                53,
+                0
+              ],
+              [
+                8,
+                1,
+                52
+              ]
+            ],
+            "rows": 183
+          }
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.5541879038016001,
+          "validation": {
+            "accuracy": 0.8360655737704918,
+            "macro_f1": 0.838823495718418,
+            "weighted_f1": 0.838823495718418,
+            "pr_auc_macro_average_precision_ovr": 0.9527299224414318,
+            "labels": [
+              "education",
+              "entertainment",
+              "technology"
+            ],
+            "confusion_matrix": [
+              [
+                41,
+                20,
+                0
+              ],
+              [
+                1,
+                60,
+                0
+              ],
+              [
+                0,
+                9,
+                52
+              ]
+            ],
+            "rows": 183
+          }
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.41404095385223627,
+          "validation": {
+            "accuracy": 0.8743169398907104,
+            "macro_f1": 0.8769352220087284,
+            "weighted_f1": 0.8769352220087283,
+            "pr_auc_macro_average_precision_ovr": 0.9649901953329563,
+            "labels": [
+              "education",
+              "entertainment",
+              "technology"
+            ],
+            "confusion_matrix": [
+              [
+                48,
+                13,
+                0
+              ],
+              [
+                3,
+                58,
+                0
+              ],
+              [
+                0,
+                7,
+                54
+              ]
+            ],
+            "rows": 183
+          }
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.31877325909833115,
+          "validation": {
+            "accuracy": 0.8797814207650273,
+            "macro_f1": 0.8804535988985829,
+            "weighted_f1": 0.8804535988985829,
+            "pr_auc_macro_average_precision_ovr": 0.9709875745594254,
+            "labels": [
+              "education",
+              "entertainment",
+              "technology"
+            ],
+            "confusion_matrix": [
+              [
+                44,
+                17,
+                0
+              ],
+              [
+                1,
+                60,
+                0
+              ],
+              [
+                0,
+                4,
+                57
+              ]
+            ],
+            "rows": 183
+          }
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.23730410852779946,
+          "validation": {
+            "accuracy": 0.8907103825136612,
+            "macro_f1": 0.8930528835877047,
+            "weighted_f1": 0.8930528835877046,
+            "pr_auc_macro_average_precision_ovr": 0.9754278063873909,
+            "labels": [
+              "education",
+              "entertainment",
+              "technology"
+            ],
+            "confusion_matrix": [
+              [
+                50,
+                11,
+                0
+              ],
+              [
+                2,
+                59,
+                0
+              ],
+              [
+                0,
+                7,
+                54
+              ]
+            ],
+            "rows": 183
+          }
+        },
+        {
+          "epoch": 8,
+          "train_loss": 0.2218512111964325,
+          "validation": {
+            "accuracy": 0.8961748633879781,
+            "macro_f1": 0.8972654561780525,
+            "weighted_f1": 0.8972654561780524,
+            "pr_auc_macro_average_precision_ovr": 0.9769437446298328,
+            "labels": [
+              "education",
+              "entertainment",
+              "technology"
+            ],
+            "confusion_matrix": [
+              [
+                47,
+                14,
+                0
+              ],
+              [
+                1,
+                60,
+                0
+              ],
+              [
+                0,
+                4,
+                57
+              ]
+            ],
+            "rows": 183
+          }
+        }
+      ],
+      "test": {
+        "accuracy": 0.9344262295081968,
+        "macro_f1": 0.9347562386133839,
+        "weighted_f1": 0.9347562386133839,
+        "pr_auc_macro_average_precision_ovr": 0.989023787362375,
+        "labels": [
+          "education",
+          "entertainment",
+          "technology"
+        ],
+        "confusion_matrix": [
+          [
+            109,
+            12,
+            1
+          ],
+          [
+            1,
+            118,
+            3
+          ],
+          [
+            2,
+            5,
+            115
+          ]
+        ],
+        "rows": 366
+      },
+      "checkpoint_sha256": "bb10269e41f9be66ac0458d37e119ef5e85846c2aa21dcc1da75df75f9eded2e",
+      "reload_predictions_match": true,
+      "errors": [
+        {
+          "id": "440f807e7415685975925c41505eaeabc6a40fa4c5099ace55068b010fc54f94",
+          "expected": "entertainment",
+          "prediction": "technology"
+        },
+        {
+          "id": "2097a5f9baf83b1c8e05e28c5761ede6edd92de58114a3ac0b7b470defa2c352",
+          "expected": "entertainment",
+          "prediction": "technology"
+        },
+        {
+          "id": "b371e70865089180d427eb358fa62dcb696478b05a4ed7e5293fd935dc57fa54",
+          "expected": "technology",
+          "prediction": "entertainment"
+        },
+        {
+          "id": "21adcc23dda239303aeb3d07d2559cd06dcedaa429a1a83f5df73814df010e44",
+          "expected": "technology",
+          "prediction": "education"
+        },
+        {
+          "id": "7a39f405c6b31d53763ecd05fc0f5625450fd3db3cd5b7f436aeb67a98a729cc",
+          "expected": "education",
+          "prediction": "entertainment"
+        },
+        {
+          "id": "49fb9f51ff38864e5be0d07a09b1ac181f0470382b860285a850b4caccf1769f",
+          "expected": "technology",
+          "prediction": "entertainment"
+        },
+        {
+          "id": "223f71aaa3bcfd8d997b3d28ddb6235f1b28171e0b3e4b504124cc4394516507",
+          "expected": "education",
+          "prediction": "entertainment"
+        },
+        {
+          "id": "03f905951983f6e9dc203794ce206b5bfa96b97ef2d70bd1940e1cc4d4b39fec",
+          "expected": "education",
+          "prediction": "technology"
+        },
+        {
+          "id": "8dd067c9089d33e77bee3532bb80256ea626bc47beace7e2d0caf6dac3e20554",
+          "expected": "education",
+          "prediction": "entertainment"
+        },
+        {
+          "id": "e0fb31edd640cd0a41aeed136d921594e0a1cb02974456af70bf7b2d00865500",
+          "expected": "education",
+          "prediction": "entertainment"
+        },
+        {
+          "id": "e6d0521ad19cf3878559e2f5dba587dbaf3de251817edaf0f6d895938b4c7d6a",
+          "expected": "education",
+          "prediction": "entertainment"
+        },
+        {
+          "id": "8b4c0e7e618862a54b1a034d8df638e96239b6eb4e4458378ae50e45ec50a9ef",
+          "expected": "education",
+          "prediction": "entertainment"
+        },
+        {
+          "id": "f82ccb65bce9d63a7885c7e126da631ffdb06a6291d018e8b097b9297983882d",
+          "expected": "education",
+          "prediction": "entertainment"
+        },
+        {
+          "id": "2d697b898f9f982a22534f07a89764201008df661f78a664817af0240e5e655a",
+          "expected": "education",
+          "prediction": "entertainment"
+        },
+        {
+          "id": "33c5031562c9bfb3ef7a652f48b334b038d9bf92b544ffe430ff9ba41430a11d",
+          "expected": "entertainment",
+          "prediction": "education"
+        },
+        {
+          "id": "c813d16d22b10c3986bb3b91ee760d3033c7d034bb2c3a53f22de0519d957ef6",
+          "expected": "technology",
+          "prediction": "education"
+        },
+        {
+          "id": "0b89e77e8530e36e468dcac1374df66abb2a0440026dc856dc031624f2a4f2da",
+          "expected": "technology",
+          "prediction": "entertainment"
+        },
+        {
+          "id": "4fdbe81b971fa23ed3a6c514204c6e0f13147bc215ffece961b0e0b0e11b700d",
+          "expected": "technology",
+          "prediction": "entertainment"
+        },
+        {
+          "id": "899c5ef3b427159f5bd7129674caf4c167840debe5d4da43ff7afa9e28f665dc",
+          "expected": "technology",
+          "prediction": "entertainment"
+        },
+        {
+          "id": "cb129341e38de048361b80c874f8d4095fdf75bc87c5302913ddb176e83daa75",
+          "expected": "education",
+          "prediction": "entertainment"
+        },
+        {
+          "id": "03d81cac6d41758dcc34ed818dd7952232636129d5df539be9bc3a0dfce1ec8c",
+          "expected": "entertainment",
+          "prediction": "technology"
+        },
+        {
+          "id": "26d29716e14c587d58f2d689d32e4d87ec7a68890ca681cf796cd7e5cf7f138d",
+          "expected": "education",
+          "prediction": "entertainment"
+        },
+        {
+          "id": "a85066fdeda82b55d8900593def3fe9e15eddc5650a7c5fa43c08f330549ed63",
+          "expected": "education",
+          "prediction": "entertainment"
+        },
+        {
+          "id": "ec97a6b8944bf389c5562df477d3fabe3e11ecd619d1ae39ddf4ad52baa82618",
+          "expected": "education",
+          "prediction": "entertainment"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "weak labels",
+    "single time split",
+    "two runs change seed and dropout together; no causal dropout claim"
+  ]
+}
