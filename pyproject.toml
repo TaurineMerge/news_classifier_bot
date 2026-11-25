@@ -16,7 +16,12 @@ dependencies = [
 # Telegram-бот (services/bot): `uv sync --group bot`
 bot = [
     "aiogram>=3.13,<4",
+    "fastapi>=0.165.0",
+    "httpx>=0.28.1",
     "pydantic-settings>=2.4,<3",
+    "python-dotenv>=1.2.4",
+    "python-multipart>=0.0.34",
+    "uvicorn>=0.54.0",
 ]
 # Инструменты разработки — нужны всем
 dev = [
