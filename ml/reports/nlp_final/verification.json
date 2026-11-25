@@ -1,0 +1,10 @@
+{
+  "all_code_cells_executed": 14,
+  "source_AST_matches_execution": true,
+  "metrics_recomputed_from_saved_scores": true,
+  "test_rows": 366,
+  "model_selection_validation_only": true,
+  "executed_sha256": "b143e8f277dfabd9ba2c12c32191a51eb61645d1013964df6d2fda606fda91ae",
+  "cnn_and_rubert_CPU_reload_predictions_match": true,
+  "publication_note": "Executed HTML corresponds to the verified run. Published source has formatting, loop-variable naming, and explicit zip strict=False cleanup; training parameters unchanged."
+}
